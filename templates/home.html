@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coordinates</title>
+</head>
+<body>
+    <h1>Coordinates</h1>
+
+    <!-- Display the form to input coordinates -->
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display a list of coordinates -->
+    <h2>Coordinates List</h2>
+    <ul>
+        {% for coordinate in coordinates %}
+            <li>{{ coordinate.lat }}, {{ coordinate.lon }}</li>
+        {% empty %}
+            <li>No coordinates available.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add a link to navigate to the 'maps' view -->
+    <a href="{% url 'map' %}">Go to Maps</a>
+</body>
+</html>
